@@ -1,0 +1,89 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:PropertyTools">
+
+    <!--<local:ValidationErrorsToStringConverter x:Key="ValiationErrorsToStringConverter" />-->
+    <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+
+    <!--<Style x:Key="ErrorInToolTipStyle" TargetType="{x:Type FrameworkElement}">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip"
+                Value="{Binding (Validation.Errors), Converter={StaticResource ValiationErrorsToStringConverter},RelativeSource={x:Static RelativeSource.Self}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>-->
+
+    <DataTemplate x:Key="ValidationErrorTemplate">
+        <TextBlock TextWrapping="Wrap" Foreground="Red" Text="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="ToolTipTemplate">
+        <TextBlock TextWrapping="Wrap" Text="{Binding}" MaxWidth="300" />
+    </DataTemplate>
+
+    <ControlTemplate x:Key="CategoryControlTemplate" TargetType="local:HeaderedContent">
+        <Grid Margin="0 8 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="Header" />
+            <!--<Separator Grid.Column="1" Margin="4 3 0 0" />-->
+            <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2" />
+        </Grid>
+    </ControlTemplate>
+
+    <!--<Style x:Key="TabHeaderErrorsStyle">
+        --><!--<Style.Triggers>
+            <DataTrigger Binding="{Binding HasWarnings}" Value="True">
+                <Setter Property="TextBlock.Foreground" Value="Orange"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding HasErrors}" Value="True">
+                <Setter Property="TextBlock.Foreground" Value="Red"/>
+            </DataTrigger>            
+        </Style.Triggers>--><!--
+    </Style>-->
+
+    <DataTemplate x:Key="TabHeaderTemplate">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{Binding Icon}" Margin="0 0 4 0"/>
+            <TextBlock Text="{Binding Header}" />           
+        </StackPanel>
+    </DataTemplate>
+
+    <Style TargetType="local:PropertyGrid" 
+           >
+        <!--<Setter Property="ValidationErrorStyle" Value="{StaticResource ErrorInToolTipStyle}" />-->
+        <Setter Property="ValidationErrorTemplate" Value="{StaticResource ValidationErrorTemplate}" />
+        <Setter Property="CategoryControlTemplate" Value="{StaticResource CategoryControlTemplate}" />
+        <Setter Property="TabHeaderTemplate" Value="{StaticResource TabHeaderTemplate}" />
+        <Setter Property="ToolTipTemplate" Value="{StaticResource ToolTipTemplate}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PropertyGrid">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <TabView x:Name="PART_Tabs"
+                                      CanReorderTabs="False" 
+                                      CanDragTabs="False" 
+                                      AllowDropTabs="False"
+                                      TabWidthMode="SizeToContent" 
+                                      IsAddTabButtonVisible="False"
+                                      SelectedIndex="{TemplateBinding SelectedTabIndex}" 
+                                      AutomationProperties.AutomationId="Tabs"/>
+                            <ScrollViewer x:Name="PART_ScrollViewer" VerticalScrollBarVisibility="Auto"  AutomationProperties.AutomationId="ScrollViewer">
+                                <StackPanel x:Name="PART_Panel" />
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

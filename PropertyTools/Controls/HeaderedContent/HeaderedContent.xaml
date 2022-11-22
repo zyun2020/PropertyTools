@@ -1,0 +1,55 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PropertyTools">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <StaticResource x:Key="HeaderedContentSeparatorBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+            <Thickness x:Key="HeaderedContentSeparatorThickness">0,1,0,0</Thickness>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <StaticResource x:Key="HeaderedContentSeparatorBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+            <Thickness x:Key="HeaderedContentSeparatorThickness">0,1,0,0</Thickness>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <StaticResource x:Key="HeaderedContentSeparatorBorderBrush" ResourceKey="SystemColorWindowTextColorBrush" />
+            <Thickness x:Key="HeaderedContentSeparatorThickness">0,1,0,0</Thickness>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <Style TargetType="local:HeaderedContent">
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HeaderedContent">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <ContentPresenter x:Name="HeaderPresenter"
+                                          x:DeferLoadStrategy="Lazy"
+                                          Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+
+                        <Border x:Name="HeaderSeparator"   
+                                Visibility="{TemplateBinding SeparatorVisible}"
+                                Grid.Row="1"
+                                BorderThickness="{ThemeResource HeaderedContentSeparatorThickness}"
+                                BorderBrush="{ThemeResource HeaderedContentSeparatorBorderBrush}" />
+                        
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Grid.Row="2"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>                   
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

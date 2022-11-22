@@ -1,0 +1,18 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PropertyTools">
+
+    <ResourceDictionary.MergedDictionaries> 
+        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/Controls/CheckMark/CheckMark.xaml" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/Controls/GroupBox/GroupBox.xaml" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/Controls/HeaderedContent/HeaderedContent.xaml" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/Controls/FilePicker/FilePicker.xaml" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/Controls/SpinControl/SpinControl.xaml" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/Controls/GridSplitter/GridSplitter.xaml" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/DataGrid/DataGrid.xaml" />
+        <ResourceDictionary Source="ms-appx:///PropertyTools/PropertyGrid/PropertyGrid.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>
