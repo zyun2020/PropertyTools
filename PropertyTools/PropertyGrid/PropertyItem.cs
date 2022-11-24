@@ -48,7 +48,7 @@ namespace PropertyTools
             this.IndentationLevel = 0;
             this.HorizontalAlignment = HAlignment.Left;
             this.DataTypes = new List<DataType>();
-            this.Columns = new List<DataGridColumnDefinition>();
+            //this.Columns = new List<DataGridColumn>();
 
             this.ListCanAdd = true;
             this.ListCanRemove = true;
@@ -111,7 +111,7 @@ namespace PropertyTools
         /// Gets the columns.
         /// </summary>
         /// <value>The columns.</value>
-        public List<DataGridColumnDefinition> Columns { get; private set; }
+        //public List<DataGridColumn> Columns { get; private set; }
 
         /// <summary>
         /// Gets or sets the converter.
